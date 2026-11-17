@@ -1,0 +1,10 @@
+Manual Docker workflow verification
+PASS: docker build -t recipes-lab:local .
+PASS: docker run -it --name recipes-lab-app --mount [project data]:/app/data recipes-lab:local
+PASS: console menu displayed; command 0 exited normally
+PASS: named container retained after exit; AutoRemove=false
+PASS: run_docker.bat restarted the same container; command 0 exited normally
+PASS: stdin open, TTY enabled, host data directory mounted at /app/data
+Container: recipes-lab-app
+Status: exited
+ID: 1f75b266df51279f35f2bfb514423865eb02439cfdb9c7f8dab9e9ddbdc4296f

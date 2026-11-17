@@ -1,0 +1,123 @@
+Docker verification: 2026-11-17T12:05:53.561859+00:00
+
+> docker version
+Client:
+ Version:           29.9.3
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        5457199
+ Built:             Tue Nov  3 21:46:10 2026
+ OS/Arch:           windows/amd64
+ Context:           desktop-linux
+
+Server: Docker Desktop 4.99.0 (245822)
+ Engine:
+  Version:          29.9.3
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       70efc0e
+  Built:            Tue Nov  3 21:41:42 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+
+> docker build --tag recipes-lab:local .
+#0 building with "desktop-linux" instance using docker-container driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 374B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 1.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 130B done
+#4 DONE 0.0s
+
+#5 [1/7] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#5 resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.0s done
+#5 DONE 0.0s
+
+#6 [2/7] WORKDIR /app
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 13.10kB done
+#7 DONE 0.0s
+
+#8 [3/7] COPY requirements.txt .
+#8 DONE 0.1s
+
+#9 [4/7] RUN python -m pip install --no-cache-dir -r requirements.txt
+#9 2.419 Collecting xlwt==1.3.0 (from -r requirements.txt (line 1))
+#9 2.743   Downloading xlwt-1.3.0-py2.py3-none-any.whl.metadata (3.5 kB)
+#9 2.803 Downloading xlwt-1.3.0-py2.py3-none-any.whl (99 kB)
+#9 2.919 Installing collected packages: xlwt
+#9 3.021 Successfully installed xlwt-1.3.0
+#9 3.021 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#9 3.332
+#9 3.332 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#9 3.332 [notice] To update, run: pip install --upgrade pip
+#9 DONE 3.5s
+
+#10 [5/7] COPY main.py .
+#10 DONE 0.1s
+
+#11 [6/7] COPY recipes ./recipes
+#11 DONE 0.1s
+
+#12 [7/7] RUN mkdir -p /app/data
+#12 DONE 0.3s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.4s done
+#13 exporting manifest sha256:147c7e66df964f71681a0f88f8294a62ed64bf457d5877e3a9c6ccd363c61b69 0.0s done
+#13 exporting config sha256:18436bb6f00b33e69851ed7722d7475b8065b9311807661b9dbdaa2fe3973648 0.0s done
+#13 exporting attestation manifest sha256:e026243fcc2369a44273987b78923b0c605d5b07927fa6c198e6ad90e3899c0d 0.0s done
+#13 exporting manifest list sha256:07ddf5daf3bf68e9e38012f4b0aa3677c35d28445ed215d2e97255de9e9e7ebb 0.0s done
+#13 naming to docker.io/library/recipes-lab:local
+#13 naming to docker.io/library/recipes-lab:local done
+#13 unpacking to docker.io/library/recipes-lab:local
+#13 unpacking to docker.io/library/recipes-lab:local 0.2s done
+#13 DONE 0.7s
+
+> docker run --rm --mount type=bind,source=D:\Desktop\Арина\3 курс\lab_2\.qa\docker-wobt9c2_,target=/app/data recipes-lab:local --demo pizza --export /app/data/pizza.xls
+
+Пицца «Учебная пицца»; порций: 2
+  Тесто: 200.00 г; 500.00 ккал; 40.00 руб.
+  Сыр: 100.00 г; 350.00 ккал; 80.00 руб.
+  Томаты: 100.00 г; 20.00 ккал; 30.00 руб.
+Общая масса ингредиентов: 400.00 г
+Калорийность всего рецепта: 870.00 ккал
+Стоимость всего рецепта: 150.00 руб.
+Одна порция: 200.00 г; 435.00 ккал; 75.00 руб.
+Калорийность на 100 г ингредиентов: 217.50 ккал
+Расчёт по массе ингредиентов: потери при готовке и дополнительные расходы не учтены.
+Расчёт №1 сохранён в базе данных.
+Отчёт сохранён: /app/data/pizza.xls
+Работа завершена.
+
+> docker run --rm --mount type=bind,source=D:\Desktop\Арина\3 курс\lab_2\.qa\docker-wobt9c2_,target=/app/data --entrypoint python recipes-lab:local -c import json,sqlite3; from pathlib import Path; db=sqlite3.connect('/app/data/recipes.sqlite3'); rows=db.execute('SELECT payload FROM calculations').fetchall(); assert len(rows)==1,rows; r=json.loads(rows[0][0]); assert r['total_cost']=='150',r; assert r['total_calories']=='870',r; assert Path('/app/data/pizza.xls').read_bytes()[:8]==bytes.fromhex('D0CF11E0A1B11AE1'); db.close(); print('PASS: second container read the first container database and XLS report')
+PASS: second container read the first container database and XLS report
+
+> docker image inspect recipes-lab:local --format {{.Id}}
+sha256:07ddf5daf3bf68e9e38012f4b0aa3677c35d28445ed215d2e97255de9e9e7ebb
+
+PASS: image built; calculation and persistence between two containers verified.
+Evidence: D:\Desktop\Арина\3 курс\lab_2\.qa\docker-wobt9c2_

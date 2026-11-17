@@ -1,0 +1,3 @@
+Command: python -m pytest -q --basetemp=.qa/console-tests
+......................................................................   [100%]
+70 passed in 1.94s
