@@ -1,0 +1,10 @@
+name: recipes-lab
+
+services:
+  app:
+    build: .
+    image: recipes-lab:local
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./data:/app/data

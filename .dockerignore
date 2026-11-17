@@ -1,0 +1,13 @@
+.git
+.venv
+.deps
+__pycache__
+.pytest_cache
+tests
+data
+*.docx
+*.pdf
+docs
+report
+output
+.qa
