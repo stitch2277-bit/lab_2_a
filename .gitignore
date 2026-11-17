@@ -1,0 +1,27 @@
+.venv/
+.deps/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/
+.qa/
+*.log
+
+# Локальные настройки и секреты
+.env
+.env.*
+!.env.example
+
+# Исходная методичка не относится к коду проекта
+algorythms_python_lab_02.docx
+
+# Временные файлы редакторов и сборки отчёта
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+~$*
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
